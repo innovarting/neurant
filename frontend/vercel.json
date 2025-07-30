@@ -9,12 +9,8 @@
   ],
   "functions": {
     "src/app/**/*.ts": {
-      "runtime": "nodejs22.x",
+      "runtime": "nodejs20.x",
       "maxDuration": 30
-    },
-    "src/app/api/**/*.ts": {
-      "runtime": "edge",
-      "maxDuration": 10
     }
   },
   "headers": [
