@@ -1,11 +1,26 @@
 # Contexto de Sesión Actual - NeurAnt
 
+## 🚨 ACCIÓN INMEDIATA REQUERIDA AL REINICIAR SESIÓN
+**MCP Supabase configurado - Scripts SQL pendientes de ejecutor**
+
+### Configuración MCP Completada:
+- ✅ **Archivo:** `.claude/mcp.json` 
+- ✅ **Token:** `sbp_cd2db2fe8075d3cb266d6af441faec9aeb26461e`
+- ✅ **Proyectos:** DEV (wydcmmsxdhentmoxthnu) + PROD (ewyyekypuzgurwgnouxp)
+
+### Scripts SQL a Ejecutar vía MCP:
+1. `supabase-setup/01-enable-extensions.sql` - Extensiones críticas
+2. `supabase-setup/02-initial-schema.sql` - Tablas y RLS policies  
+3. `supabase-setup/03-storage-setup.sql` - Storage buckets
+
+**INSTRUCCIÓN:** Usar herramientas MCP para ejecutar scripts en ambos proyectos antes de continuar.
+
 ## Información de Desarrollo
-- **Branch:** main (proyecto sin inicializar)
-- **Último Commit:** N/A
-- **Working Directory:** /home/kcifuentes/Documentos/Innovarting/projects/NeurAnt
-- **Environment:** Desarrollo local
-- **Session Started:** 2025-07-29 18:30 COT
+- **Branch:** dev (actualizado con configuración Supabase)
+- **Último Commit:** fe1abbe - feat: Implement Supabase Cloud configuration
+- **Working Directory:** /home/kcifuentes/Documentos/Innovarting/projects/neurant
+- **Environment:** Desarrollo con Supabase Cloud
+- **Session Started:** 2025-07-30 (MCP configurado)
 
 ## Estado Mental del Proyecto
 - **Decisión Reciente:** TaskManager implementado con estructura basada en documentación real

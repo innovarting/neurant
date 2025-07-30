@@ -1,133 +1,164 @@
 /**
- * Supabase Database Types
+ * Supabase Database Types - NeurAnt
  * 
- * Tipos TypeScript generados para la base de datos de NeurAnt.
- * Este archivo será actualizado cuando se generen los tipos desde Supabase.
+ * Tipos TypeScript generados desde la base de datos de Supabase Cloud.
+ * Actualizado: 2025-01-30 - Incluye roles RBAC y extensiones pgvector.
  */
 
-export interface Database {
+export type Json =
+  | string
+  | number
+  | boolean
+  | null
+  | { [key: string]: Json | undefined }
+  | Json[]
+
+export type Database = {
   public: {
     Tables: {
-      user_profiles: {
+      chatbots: {
         Row: {
-          id: string
-          email: string
-          first_name: string | null
-          last_name: string | null
-          avatar_url: string | null
-          role: 'admin' | 'manager' | 'agent' | 'user'
           company_id: string | null
           created_at: string
+          created_by: string | null
+          description: string | null
+          id: string
+          is_active: boolean | null
+          max_tokens: number | null
+          model: string | null
+          name: string
+          system_prompt: string | null
+          temperature: number | null
           updated_at: string
         }
         Insert: {
-          id: string
-          email: string
-          first_name?: string | null
-          last_name?: string | null
-          avatar_url?: string | null
-          role?: 'admin' | 'manager' | 'agent' | 'user'
           company_id?: string | null
           created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          max_tokens?: number | null
+          model?: string | null
+          name: string
+          system_prompt?: string | null
+          temperature?: number | null
           updated_at?: string
         }
         Update: {
-          id?: string
-          email?: string
-          first_name?: string | null
-          last_name?: string | null
-          avatar_url?: string | null
-          role?: 'admin' | 'manager' | 'agent' | 'user'
           company_id?: string | null
           created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          max_tokens?: number | null
+          model?: string | null
+          name?: string
+          system_prompt?: string | null
+          temperature?: number | null
           updated_at?: string
         }
+        Relationships: [
+          {
+            foreignKeyName: "chatbots_company_id_fkey"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "companies"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       companies: {
         Row: {
-          id: string
-          name: string
-          slug: string
+          created_at: string
           domain: string | null
-          logo_url: string | null
-          settings: any | null
-          created_at: string
-          updated_at: string
-        }
-        Insert: {
-          id?: string
-          name: string
-          slug: string
-          domain?: string | null
-          logo_url?: string | null
-          settings?: any | null
-          created_at?: string
-          updated_at?: string
-        }
-        Update: {
-          id?: string
-          name?: string
-          slug?: string
-          domain?: string | null
-          logo_url?: string | null
-          settings?: any | null
-          created_at?: string
-          updated_at?: string
-        }
-      }
-      chatbots: {
-        Row: {
           id: string
+          logo_url: string | null
           name: string
-          description: string | null
-          system_prompt: string | null
-          model: string
-          temperature: number
-          max_tokens: number
-          company_id: string
-          is_active: boolean
-          created_by: string
-          created_at: string
+          settings: Json | null
+          slug: string
           updated_at: string
         }
         Insert: {
-          id?: string
-          name: string
-          description?: string | null
-          system_prompt?: string | null
-          model: string
-          temperature?: number
-          max_tokens?: number
-          company_id: string
-          is_active?: boolean
-          created_by: string
           created_at?: string
+          domain?: string | null
+          id?: string
+          logo_url?: string | null
+          name: string
+          settings?: Json | null
+          slug: string
           updated_at?: string
         }
         Update: {
-          id?: string
-          name?: string
-          description?: string | null
-          system_prompt?: string | null
-          model?: string
-          temperature?: number
-          max_tokens?: number
-          company_id?: string
-          is_active?: boolean
-          created_by?: string
           created_at?: string
+          domain?: string | null
+          id?: string
+          logo_url?: string | null
+          name?: string
+          settings?: Json | null
+          slug?: string
           updated_at?: string
         }
+        Relationships: []
+      }
+      user_profiles: {
+        Row: {
+          avatar_url: string | null
+          company_id: string | null
+          created_at: string
+          email: string
+          first_name: string | null
+          id: string
+          last_name: string | null
+          role: 'owner' | 'administrador' | 'supervisor' | 'operador' | null
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          company_id?: string | null
+          created_at?: string
+          email: string
+          first_name?: string | null
+          id: string
+          last_name?: string | null
+          role?: 'owner' | 'administrador' | 'supervisor' | 'operador' | null
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          company_id?: string | null
+          created_at?: string
+          email?: string
+          first_name?: string | null
+          id?: string
+          last_name?: string | null
+          role?: 'owner' | 'administrador' | 'supervisor' | 'operador' | null
+          updated_at?: string
+        }
+        Relationships: []
       }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      // pgvector functions included
+      vector_dims: {
+        Args: { "": string }
+        Returns: number
+      }
+      vector_norm: {
+        Args: { "": string }
+        Returns: number
+      }
+      l2_normalize: {
+        Args: { "": string }
+        Returns: unknown
+      }
     }
     Enums: {
-      user_role: 'admin' | 'manager' | 'agent' | 'user'
+      user_role: 'owner' | 'administrador' | 'supervisor' | 'operador'
     }
     CompositeTypes: {
       [_ in never]: never

@@ -7,7 +7,7 @@
 - **Phase:** 1 - Foundation
 - **Epic:** Infrastructure Setup
 - **Sprint:** Sprint 1.1 (Semanas 1-2, Enero 2025)
-- **Status:** ⏳ Pendiente
+- **Status:** ✅ COMPLETADA - 2025-01-30
 - **Tiempo Estimado:** 6 horas
 - **Prioridad:** Crítica - Bloquea base de datos y auth
 
@@ -46,20 +46,20 @@ Configurar proyecto Supabase con PostgreSQL 15+, habilitar extensiones necesaria
 
 ### Cliente JavaScript Configurado
 - [x] @supabase/supabase-js client configurado
-- [x] Environment variables configuradas
-- [x] TypeScript types básicos generados
+- [x] Environment variables configuradas (.env.local)
+- [x] TypeScript types desde BD real generados
 - [x] Conexión de prueba exitosa
 
 ### Storage y Auth Básico
-- [x] Supabase Storage bucket 'documents' creado
-- [x] Supabase Auth habilitado
-- [x] Email templates básicos configurados
+- [x] Supabase Storage buckets creados (documents, avatars, assets)
+- [x] Supabase Auth habilitado con roles RBAC
+- [x] Storage policies configuradas
 - [x] RLS habilitado a nivel global
 
 ### Desarrollo Local
-- [x] Supabase Cloud configurado (alternativa a local)
-- [x] Scripts SQL de setup creados
-- [x] Sistema de testing implementado
+- [x] Supabase Cloud configurado (DEV + PROD)
+- [x] Scripts SQL de setup ejecutados vía MCP
+- [x] Sistema de testing implementado y validado
 
 ## Archivos a Crear/Modificar
 ```

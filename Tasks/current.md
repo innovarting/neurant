@@ -2,16 +2,17 @@
 
 ## Última Tarea Completada
 - **ID:** TASK-P1E1-01B
-- **Título:** Supabase Configuration
-- **Estado:** ✅ COMPLETADA - 2025-07-30
+- **Título:** Configuración de Supabase PostgreSQL
+- **Estado:** ✅ COMPLETADA - 2025-01-30
 - **Archivo:** `Tasks/tasks/phase-1-foundation/epic-01-infrastructure/01b-supabase-configuration.md`
+- **Resumen:** Supabase completamente configurado con clientes, types, conexiones validadas y roles RBAC
 
 ## Tarea Actual
-- **ID:** TASK-P1E1-01C
+- **ID:** TASK-P1E1-01C  
 - **Título:** Vercel Deployment Setup
 - **Estado:** ⏳ PENDIENTE - Próxima a ejecutar
 - **Archivo:** `Tasks/tasks/phase-1-foundation/epic-01-infrastructure/01c-vercel-deployment-setup.md`
-- **Dependencias:** ✅ TASK-P1E1-01B completada (desbloqueada)
+- **Dependencias:** ✅ Supabase Configuration completada
 
 ## Estado del Proyecto
 - **Phase:** 1 - Foundation (EN PROGRESO)
