@@ -17,6 +17,8 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+COPY .env.local .env.production
+
 # Establece variables necesarias si usas Supabase, etc.
 ENV NODE_ENV production
 
