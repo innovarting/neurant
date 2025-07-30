@@ -1,0 +1,1 @@
+or favor lee los archivos **@SUMMARIZING.md** y **@CLAUDE.md** para retomar donde los dejamos la sesión anterior.
