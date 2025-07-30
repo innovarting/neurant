@@ -7,7 +7,7 @@
 - **Phase:** 1 - Foundation
 - **Epic:** Auth & Multi-tenancy
 - **Sprint:** Sprint 1.2 (Semanas 3-4, Febrero 2025)
-- **Status:** ⏳ Pendiente
+- **Status:** ✅ COMPLETADA - 2025-07-30
 - **Tiempo Estimado:** 4 horas
 - **Prioridad:** Crítica - Bloquea todo el sistema de auth
 
@@ -31,24 +31,24 @@ Configurar sistema de autenticación completo en Supabase con roles personalizad
 
 ## Criterios de Aceptación Específicos
 ### Supabase Auth Configuration
-- [ ] Email/password authentication habilitado
-- [ ] Email confirmation configurado
-- [ ] Password reset functionality activado
-- [ ] Custom email templates configurados
-- [ ] Rate limiting configurado para auth endpoints
+- [x] Email/password authentication habilitado
+- [x] Email confirmation configurado
+- [x] Password reset functionality activado
+- [x] Custom email templates configurados
+- [x] Rate limiting configurado para auth endpoints
 
 ### Database Schema para Auth
-- [ ] `auth.users` tabla native de Supabase funcionando
-- [ ] `companies` tabla creada con RLS
-- [ ] `user_profiles` tabla creada vinculada a auth.users
-- [ ] Roles enum creado: owner, admin, supervisor, operador
-- [ ] User invitations tabla para onboarding
+- [x] `auth.users` tabla native de Supabase funcionando
+- [x] `companies` tabla creada con RLS
+- [x] `user_profiles` tabla creada vinculada a auth.users
+- [x] Roles enum creado: owner, admin, supervisor, operador
+- [x] User invitations tabla para onboarding
 
 ### Row Level Security (RLS)
-- [ ] RLS habilitado en todas las tablas multi-tenant
-- [ ] Policies creadas para aislamiento por company_id
-- [ ] Functions helper para role-based authorization
-- [ ] Testing de isolation entre companies
+- [x] RLS habilitado en todas las tablas multi-tenant
+- [x] Policies creadas para aislamiento por company_id
+- [x] Functions helper para role-based authorization
+- [x] Testing de isolation entre companies
 
 ## Archivos a Crear/Modificar
 ```
