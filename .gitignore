@@ -10,7 +10,7 @@ yarn-error.log*
 /dist
 /.next/
 /out/
-/.opsidian/
+/.obsidian/
 
 # Runtime data
 pids
