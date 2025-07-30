@@ -5,7 +5,7 @@
  * y maneja automáticamente las cookies de sesión.
  */
 
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { createBrowserClient } from '@supabase/ssr'
 import type { Database } from '@/types/database'
 
 // Validar que las variables de entorno estén configuradas
@@ -18,7 +18,10 @@ if (!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
 }
 
 // Cliente para componentes React
-export const supabase = createClientComponentClient<Database>()
+export const supabase = createBrowserClient<Database>(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+)
 
 // Configuración del cliente
 export const supabaseConfig = {

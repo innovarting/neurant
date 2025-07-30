@@ -5,8 +5,7 @@
  * y middleware para operaciones del lado del servidor.
  */
 
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
-import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
+import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import type { Database } from '@/types/database'
 
@@ -15,28 +14,68 @@ if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
   throw new Error('Missing NEXT_PUBLIC_SUPABASE_URL environment variable')
 }
 
+if (!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+  throw new Error('Missing NEXT_PUBLIC_SUPABASE_ANON_KEY environment variable')
+}
+
 if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
-  throw new Error('Missing SUPABASE_SERVICE_ROLE_KEY environment variable')
+  throw new Error('Missing SUPABASE_SERVICE_ROLE_KEY environment variable')  
 }
 
 /**
  * Cliente para Server Components (app directory)
  * Utiliza cookies para mantener la sesión del usuario
  */
-export const createServerSupabaseClient = () => {
-  return createServerComponentClient<Database>({
-    cookies,
-  })
+export const createServerSupabaseClient = async () => {
+  const cookieStore = await cookies()
+  
+  return createServerClient<Database>(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return cookieStore.getAll()
+        },
+        setAll(cookiesToSet) {
+          try {
+            cookiesToSet.forEach(({ name, value, options }) =>
+              cookieStore.set(name, value, options)
+            )
+          } catch {
+            // The `setAll` method was called from a Server Component.
+            // This can be ignored if you have middleware refreshing
+            // user sessions.
+          }
+        },
+      },
+    }
+  )
 }
 
 /**
  * Cliente para API Routes y Route Handlers
  * Utiliza cookies para mantener la sesión del usuario
  */
-export const createRouteHandlerSupabaseClient = () => {
-  return createRouteHandlerClient<Database>({
-    cookies,
-  })
+export const createRouteHandlerSupabaseClient = async () => {
+  const cookieStore = await cookies()
+  
+  return createServerClient<Database>(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return cookieStore.getAll()
+        },
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value, options }) =>
+            cookieStore.set(name, value, options)
+          )
+        },
+      },
+    }
+  )
 }
 
 /**
@@ -60,7 +99,7 @@ export const supabaseAdmin = createClient<Database>(
  * Helper para obtener la sesión del usuario en server components
  */
 export async function getServerSession() {
-  const supabase = createServerSupabaseClient()
+  const supabase = await createServerSupabaseClient()
   
   try {
     const { data: { session }, error } = await supabase.auth.getSession()
@@ -81,7 +120,7 @@ export async function getServerSession() {
  * Helper para obtener el usuario actual en server components
  */
 export async function getServerUser() {
-  const supabase = createServerSupabaseClient()
+  const supabase = await createServerSupabaseClient()
   
   try {
     const { data: { user }, error } = await supabase.auth.getUser()
@@ -103,7 +142,7 @@ export async function getServerUser() {
  */
 export async function testServerConnection() {
   try {
-    const supabase = createServerSupabaseClient()
+    const supabase = await createServerSupabaseClient()
     const { data, error } = await supabase
       .from('user_profiles')
       .select('count')

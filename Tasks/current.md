@@ -10,7 +10,7 @@
 ## Tarea Actual
 - **ID:** TASK-P1E1-01C  
 - **Título:** Vercel Deployment Setup
-- **Estado:** ⏳ PENDIENTE - Próxima a ejecutar
+- **Estado:** 🔄 EN PROGRESO - Ejecutando configuración
 - **Archivo:** `Tasks/tasks/phase-1-foundation/epic-01-infrastructure/01c-vercel-deployment-setup.md`
 - **Dependencias:** ✅ Supabase Configuration completada
 

@@ -7,17 +7,38 @@
  * - Maneja redirects de autenticación
  */
 
-import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs'
+import { createServerClient } from '@supabase/ssr'
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import type { Database } from '@/types/database'
 
 export async function middleware(req: NextRequest) {
-  const res = NextResponse.next()
-  
-  const supabase = createMiddlewareClient<Database>({ req, res })
+  let supabaseResponse = NextResponse.next({
+    request: req,
+  })
 
-  // Refresh session if expired - required for Server Components
+  const supabase = createServerClient<Database>(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return req.cookies.getAll()
+        },
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value }) => req.cookies.set(name, value))
+          supabaseResponse = NextResponse.next({
+            request: req,
+          })
+          cookiesToSet.forEach(({ name, value, options }) =>
+            supabaseResponse.cookies.set(name, value, options)
+          )
+        },
+      },
+    }
+  )
+
+  // Refresh session if expired - required for Server Components  
   const { data: { session }, error } = await supabase.auth.getSession()
 
   // Log session status para debugging (solo en desarrollo)
@@ -76,7 +97,7 @@ export async function middleware(req: NextRequest) {
     console.error('Middleware auth error:', error)
   }
 
-  return res
+  return supabaseResponse
 }
 
 // Rutas donde se ejecuta el middleware
