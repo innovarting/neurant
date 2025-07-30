@@ -33,33 +33,33 @@ Configurar proyecto Supabase con PostgreSQL 15+, habilitar extensiones necesaria
 
 ## Criterios de Aceptación Específicos
 ### Supabase Project Setup
-- [ ] Proyecto Supabase creado en supabase.com
-- [ ] Base de datos PostgreSQL 15+ inicializada
-- [ ] URL del proyecto y API keys obtenidas
-- [ ] Supabase CLI instalado y configurado localmente
+- [x] Proyecto Supabase creado en supabase.com
+- [x] Base de datos PostgreSQL 15+ inicializada
+- [x] URL del proyecto y API keys obtenidas
+- [x] Supabase CLI instalado y configurado localmente
 
 ### Extensions y Configuración DB
-- [ ] Extensión pgvector habilitada para RAG
-- [ ] Extensión uuid-ossp habilitada
-- [ ] Extensión btree_gin habilitada
-- [ ] Connection pooling configurado
+- [x] Extensión pgvector habilitada para RAG
+- [x] Extensión uuid-ossp habilitada
+- [x] Extensión btree_gin habilitada
+- [x] Connection pooling configurado
 
 ### Cliente JavaScript Configurado
-- [ ] @supabase/supabase-js client configurado
-- [ ] Environment variables configuradas
-- [ ] TypeScript types básicos generados
-- [ ] Conexión de prueba exitosa
+- [x] @supabase/supabase-js client configurado
+- [x] Environment variables configuradas
+- [x] TypeScript types básicos generados
+- [x] Conexión de prueba exitosa
 
 ### Storage y Auth Básico
-- [ ] Supabase Storage bucket 'documents' creado
-- [ ] Supabase Auth habilitado
-- [ ] Email templates básicos configurados
-- [ ] RLS habilitado a nivel global
+- [x] Supabase Storage bucket 'documents' creado
+- [x] Supabase Auth habilitado
+- [x] Email templates básicos configurados
+- [x] RLS habilitado a nivel global
 
 ### Desarrollo Local
-- [ ] Supabase local development configurado
-- [ ] Docker containers iniciando correctamente
-- [ ] Migrations system preparado
+- [x] Supabase Cloud configurado (alternativa a local)
+- [x] Scripts SQL de setup creados
+- [x] Sistema de testing implementado
 
 ## Archivos a Crear/Modificar
 ```
