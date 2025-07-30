@@ -166,6 +166,32 @@ El Arquitecto debe **automáticamente** invocar el agente apropiado cuando:
 # ---------- TASKMANAGER PROTOCOL ----------
 task_management:
 
+## 🚨 ESTRUCTURA DEL PROYECTO - CRÍTICO
+**JAMÁS crear archivos del proyecto Next.js fuera de `/frontend/`**
+
+### ✅ ESTRUCTURA CORRECTA:
+```
+neurant/
+├── frontend/                    ← PROYECTO NEXT.JS
+│   ├── src/
+│   │   ├── lib/supabase/       ← Clientes de Supabase
+│   │   ├── types/              ← Tipos TypeScript
+│   │   ├── components/         ← Componentes React
+│   │   └── app/                ← App Router de Next.js
+│   ├── .env.local              ← Variables de entorno
+│   ├── package.json            ← Dependencias
+│   └── next.config.ts          ← Configuración Next.js
+├── Tasks/                      ← Sistema de gestión de tareas
+├── docs/                       ← Documentación arquitectónica
+└── CLAUDE.md                   ← Este archivo
+```
+
+### ❌ ERRORES CRÍTICOS A EVITAR:
+- **NUNCA** crear carpetas `lib/`, `types/`, `components/` en la raíz
+- **NUNCA** crear `.env.local` en la raíz del proyecto
+- **NUNCA** crear archivos de configuración fuera de `/frontend/`
+- **SIEMPRE** trabajar dentro del directorio `/frontend/` para código
+
 ## Inicio de Sesión OBLIGATORIO
 1. **SIEMPRE** leer `Tasks/current.md` al iniciar cualquier sesión
 2. Identificar tarea actual desde current.md (archivo específico referenciado)
@@ -239,14 +265,43 @@ El archivo `Tasks/current.md` debe mantener SIEMPRE esta estructura concisa:
 3. **ACTUAL**: Solo la tarea actual y la última completada
 4. **NAVEGABLE**: Enlaces claros a contexto detallado
 
+## 🎯 FLUJO OBLIGATORIO PARA COMPLETAR TAREAS
+
+### PASO 1: Desarrollo y Validación (EN PROGRESO)
+1. **Implementar** todos los criterios de aceptación
+2. **Validar** técnicamente cada implementación
+3. **Ejecutar** todos los tests y verificaciones especificadas
+4. **Confirmar** que TODO funciona al 100%
+
+### PASO 2: Marcar Completada en Archivo de Tarea (CRÍTICO)
+1. **Leer** el archivo de tarea desde la ruta en `Tasks/current.md`
+2. **Cambiar status** de `⏳ Pendiente` a `✅ COMPLETADA - YYYY-MM-DD`
+3. **Marcar checkboxes** solo de criterios cumplidos en ESTA tarea
+4. **NO agregar** contenido nuevo al documento
+5. **Guardar** archivo de tarea actualizado
+
+### PASO 3: Actualizar Tasks/current.md (FINAL)
+1. **Mover** tarea completada a "Última Tarea Completada"
+2. **Identificar** próxima tarea según `implementation-order.md`
+3. **Actualizar** "Tarea Actual" con nueva tarea
+4. **Actualizar** "Estado del Proyecto" con progreso
+5. **Mantener** formato exacto especificado
+
+### ⚠️ ORDEN CRÍTICO - NO ALTERAR:
+```
+1. Desarrollo completo ✅
+2. Archivo de tarea → COMPLETADA ✅
+3. Tasks/current.md → Actualizado ✅
+```
+
 ## Actualización Continua OBLIGATORIA
-- **Inmediatamente** actualizar `Tasks/current.md` al cambiar estado de tarea
-- **Mantener formato exacto** especificado arriba
-- **Solo** cambiar IDs, títulos, estados y rutas de archivos
-- **Nunca** agregar secciones adicionales o contenido detallado
-- **Siempre** actualizar `Tasks/session-context.md` con decisiones técnicas
-- **Nunca** marcar completada hasta que 100% de criterios cumplidos
-- **Documentar** cualquier bloqueador o desviación inmediatamente
+- **SIEMPRE** seguir el flujo de 3 pasos para completar tareas
+- **NUNCA** marcar completada en current.md sin marcar primero en archivo de tarea
+- **MANTENER** formato exacto especificado arriba
+- **SOLO** cambiar IDs, títulos, estados y rutas de archivos
+- **NUNCA** agregar secciones adicionales o contenido detallado
+- **SIEMPRE** actualizar `Tasks/session-context.md` con decisiones técnicas
+- **DOCUMENTAR** cualquier bloqueador o desviación inmediatamente
 
 ## Validación de Tarea ESTRICTA
 - **Ejecutar** todos los comandos de validación especificados en tarea
@@ -342,8 +397,31 @@ Proyecto NeurAnt en desarrollo activo con TaskManager implementado.
 - `docs/architecture/` - 13 documentos arquitectónicos completos
 - `CLAUDE.md` - Este archivo con protocolos actualizados
 
+### 📁 DIRECTORIO DE TRABAJO ACTUAL
+**Working Directory:** `/home/kcifuentes/Documentos/Innovarting/projects/neurant/`
+
+### ✅ PATHS CORRECTOS PARA EL PROYECTO:
+- **Frontend Next.js:** `/home/kcifuentes/Documentos/Innovarting/projects/neurant/frontend/`
+- **TaskManager:** `/home/kcifuentes/Documentos/Innovarting/projects/neurant/Tasks/`
+- **Documentación:** `/home/kcifuentes/Documentos/Innovarting/projects/neurant/docs/`
+- **Configuraciones:** `/home/kcifuentes/Documentos/Innovarting/projects/neurant/frontend/.env.local`
+
+### 🚨 RECORDATORIOS CRÍTICOS PARA EVITAR ERRORES:
+1. **SIEMPRE** usar paths absolutos completos
+2. **VERIFICAR** que archivos de código van en `/frontend/`
+3. **CONFIRMAR** estructura antes de crear archivos
+4. **LIMPIAR** archivos creados incorrectamente
+5. **VALIDAR** que el proyecto funciona en `/frontend/`
+
 ### Current Permissions
 
 The Claude Code configuration allows:
 - `Bash(ls:*)` - File listing operations
 - `Bash(find:*)` - File search operations
+
+## 📋 CHECKLIST ANTES DE CADA SESIÓN
+- [ ] ¿Leí `Tasks/current.md`?
+- [ ] ¿Identifiqué la tarea actual correcta?
+- [ ] ¿Verifiqué que paths apuntan a `/frontend/`?
+- [ ] ¿Consulté las dependencias antes de iniciar?
+- [ ] ¿Tengo claro el flujo de 3 pasos para completar?
